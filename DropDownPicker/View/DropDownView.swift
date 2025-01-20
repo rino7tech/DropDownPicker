@@ -1,3 +1,10 @@
+//
+//  DropDownView.swift
+//  DropDownPicker
+//
+//  Created by 伊藤璃乃 on 2025/01/20.
+//
+
 import SwiftUI
 
 struct DropDownView: View {
@@ -50,7 +57,7 @@ struct DropDownView: View {
 
     @ViewBuilder
     func OptionsView() -> some View {
-        VStack(spacing: 15) { // ここで選択肢の間隔を広げる
+        VStack(spacing: 15) {
             ForEach(options, id: \.self) { option in
                 HStack(spacing: 0) {
                     Text(option)
@@ -63,20 +70,20 @@ struct DropDownView: View {
                 }
                 .foregroundStyle(selection == option ? Color.primary : Color.gray)
                 .animation(.none, value: selection)
-                .frame(width: 100, height: 40) // 縦幅の間隔を増やす
+                .frame(width: 100, height: 40)
                 .contentShape(.rect)
                 .onTapGesture {
                     withAnimation(.snappy) {
                         selection = option
                         showOptions = false
                     }
-                    print(option) // タップした選択肢を出力
+                    print(option)
                 }
             }
         }
         .padding(.horizontal, 15)
         .padding(.vertical, 10)
-        .transition(.move(edge: .top)) // 上から下にスライドするアニメーション
+        .transition(.move(edge: .top))
     }
 
     enum Anchor {
